@@ -1,0 +1,727 @@
+[gd_scene load_steps=41 format=3 uid="uid://b8m35avic2wpg"]
+
+[ext_resource type="Script" path="res://Scripts/Revolver.gd" id="2_10q17"]
+[ext_resource type="PackedScene" uid="uid://c3muawrlcr37o" path="res://Scenes/x_ruleta.tscn" id="2_d57aq"]
+[ext_resource type="PackedScene" uid="uid://bxqg76vent1sy" path="res://Scenes/menuRevolver.tscn" id="3_gw5os"]
+[ext_resource type="Shader" path="res://Shaders/CRTFILTER.gdshader" id="3_mbv4y"]
+[ext_resource type="Texture2D" uid="uid://cwl71ipeqty8y" path="res://Sprites/RUleta/Fondo.png" id="4_65ohh"]
+[ext_resource type="Shader" path="res://Shaders/RevolverFondoShader.gdshader" id="5_rh16c"]
+[ext_resource type="Texture2D" uid="uid://dlfuwqn7ql6ga" path="res://Sprites/RUleta/CuadradosFondo.png" id="6_4d4ew"]
+[ext_resource type="Texture2D" uid="uid://dyskkfenl2men" path="res://Sprites/RUleta/RevolverSprites/1.png" id="6_ltox8"]
+[ext_resource type="FontFile" uid="uid://2ooisgvhy6gi" path="res://FONTS/fibberish.ttf" id="6_wskua"]
+[ext_resource type="AudioStream" uid="uid://dxfxdp4qdu0pw" path="res://Sprites/RUleta/noBullets.wav" id="8_s0qm1"]
+[ext_resource type="AudioStream" uid="uid://cxesqkhoxox63" path="res://Sprites/RUleta/woosh.wav" id="9_7e1yp"]
+[ext_resource type="AudioStream" uid="uid://dl7nahqpyw1df" path="res://Sprites/RUleta/playful-casino-slot-machine-jackpot-3-183921.mp3" id="9_877tu"]
+[ext_resource type="AudioStream" uid="uid://cxim3fqusesrt" path="res://Sprites/RUleta/BulletShoot.wav" id="9_q6lo1"]
+[ext_resource type="AudioStream" uid="uid://bqsdep7w7ikpv" path="res://Sprites/RUleta/revolver-spin-96947.mp3" id="10_eihqx"]
+[ext_resource type="AudioStream" uid="uid://chjqyely507fe" path="res://Sprites/RUleta/the-best-jazz-club-in-new-orleans-164472.mp3" id="12_x6oit"]
+[ext_resource type="Texture2D" uid="uid://bonqv3txchobd" path="res://Sprites/RUleta/RevolverSprites/2.png" id="13_q3uax"]
+[ext_resource type="Shader" path="res://Shaders/transition.gdshader" id="14_6hw1y"]
+[ext_resource type="Texture2D" uid="uid://dxlkf6nxb7ot7" path="res://Sprites/RUleta/RevolverSprites/3.png" id="14_rltmu"]
+[ext_resource type="Texture2D" uid="uid://blawpafmrmb7k" path="res://Sprites/RUleta/RevolverSprites/4.png" id="15_jgr46"]
+[ext_resource type="Texture2D" uid="uid://gg7qp3yt4tiw" path="res://Sprites/RUleta/RevolverSprites/5_si.png" id="16_l3yrp"]
+[ext_resource type="Texture2D" uid="uid://wbm7d3a1s1kd" path="res://Sprites/RUleta/RevolverSprites/5_no.png" id="17_j53uo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2x20"]
+shader = ExtResource("5_rh16c")
+shader_parameter/amplitude = Vector2(10, 5)
+
+[sub_resource type="Theme" id="Theme_e1dkl"]
+default_font = ExtResource("6_wskua")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.12549)
+RichTextLabel/constants/outline_size = 4
+RichTextLabel/constants/shadow_offset_x = 3
+RichTextLabel/constants/shadow_offset_y = 3
+RichTextLabel/font_sizes/bold_font_size = 27
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccs38"]
+bg_color = Color(0.137255, 0.137255, 0.137255, 0.815686)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vramk"]
+bg_color = Color(0, 0, 0, 0.611765)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7f1c"]
+bg_color = Color(0, 0, 0, 0.901961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="Theme" id="Theme_ubcn1"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/fonts/font = ExtResource("6_wskua")
+Button/styles/hover = SubResource("StyleBoxFlat_ccs38")
+Button/styles/normal = SubResource("StyleBoxFlat_vramk")
+Button/styles/pressed = SubResource("StyleBoxFlat_w7f1c")
+
+[sub_resource type="Animation" id="Animation_w307e"]
+resource_name = "newGame"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_playAgain"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pymat"]
+resource_name = "shoot"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_lesx2"]
+resource_name = "startGame"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_7tk2x"]
+resource_name = "statsRefresh"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stats:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 115), Vector2(-95, 115), Vector2(0, 115)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stats_update"
+}]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFXWHoos")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_7e1yp")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Botones:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(95, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b8dri"]
+resource_name = "gunShoot"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Revolver:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_ltox8"), ExtResource("13_q3uax"), ExtResource("14_rltmu"), ExtResource("15_jgr46"), ExtResource("16_l3yrp"), ExtResource("6_ltox8")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"kill"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wl5tb"]
+resource_name = "gunNoShoot"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Revolver:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_ltox8"), ExtResource("13_q3uax"), ExtResource("14_rltmu"), ExtResource("15_jgr46"), ExtResource("17_j53uo"), ExtResource("6_ltox8")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"noKill"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vgcyr"]
+_data = {
+"gunNoShoot": SubResource("Animation_wl5tb"),
+"gunShoot": SubResource("Animation_b8dri"),
+"newGame": SubResource("Animation_w307e"),
+"shoot": SubResource("Animation_pymat"),
+"startGame": SubResource("Animation_lesx2"),
+"statsRefresh": SubResource("Animation_7tk2x")
+}
+
+[sub_resource type="Animation" id="Animation_t72qy"]
+resource_name = "gunShoot"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Revolver:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_ltox8"), ExtResource("13_q3uax"), ExtResource("14_rltmu"), ExtResource("15_jgr46"), ExtResource("16_l3yrp"), ExtResource("6_ltox8")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"kill"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7meyy"]
+resource_name = "gunNoShoot"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Revolver:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_ltox8"), ExtResource("13_q3uax"), ExtResource("14_rltmu"), ExtResource("15_jgr46"), ExtResource("17_j53uo"), ExtResource("6_ltox8")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"noKill"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6hthy"]
+_data = {
+"gunNoShoot": SubResource("Animation_7meyy"),
+"gunShoot": SubResource("Animation_t72qy")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55vxu"]
+shader = ExtResource("14_6hw1y")
+shader_parameter/circle_size = 1.0
+shader_parameter/screen_width = 480.0
+shader_parameter/screen_height = 270.0
+
+[sub_resource type="GDScript" id="GDScript_acney"]
+script/source = "extends ColorRect
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6vgq"]
+shader = ExtResource("3_mbv4y")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(480, 270)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.00100005
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.494
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="Control" type="Control" node_paths=PackedStringArray("points", "revolver", "statsText")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_10q17")
+points = [NodePath("Personas/Ruben"), NodePath("Personas/Andreu"), NodePath("Personas/Nadia"), NodePath("Personas/Ricardo"), NodePath("Personas/Alberto"), NodePath("Personas/Ulises")]
+revolver = NodePath("Revolver")
+statsText = NodePath("Stats/Stats")
+_x = ExtResource("2_d57aq")
+
+[node name="FOndo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = -145.0
+offset_right = 255.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_65ohh")
+expand_mode = 1
+
+[node name="FondoCuadrados" type="TextureRect" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_r2x20")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -159.5
+offset_right = 274.0
+offset_bottom = 159.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_4d4ew")
+expand_mode = 1
+
+[node name="Revolver" type="Sprite2D" parent="."]
+position = Vector2(239, 143.5)
+scale = Vector2(2.49691, 2.49691)
+texture = ExtResource("6_ltox8")
+offset = Vector2(0.52739, 0.852539)
+
+[node name="Personas" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ruben" type="RichTextLabel" parent="Personas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -110.0
+offset_right = -117.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_e1dkl")
+bbcode_enabled = true
+text = "RUBEN"
+fit_content = true
+
+[node name="Andreu" type="RichTextLabel" parent="Personas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -110.0
+offset_right = 41.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_e1dkl")
+bbcode_enabled = true
+text = "ANDREU"
+fit_content = true
+
+[node name="Nadia" type="RichTextLabel" parent="Personas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 154.0
+offset_top = -110.0
+offset_right = 198.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_e1dkl")
+bbcode_enabled = true
+text = "NADIA"
+fit_content = true
+
+[node name="Ricardo" type="RichTextLabel" parent="Personas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = 94.0
+offset_right = -116.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_e1dkl")
+bbcode_enabled = true
+text = "RICARDO"
+fit_content = true
+
+[node name="Alberto" type="RichTextLabel" parent="Personas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = 93.0
+offset_right = 39.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_e1dkl")
+bbcode_enabled = true
+text = "ALBERTO"
+fit_content = true
+
+[node name="Ulises" type="RichTextLabel" parent="Personas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 146.0
+offset_top = 94.0
+offset_right = 190.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_e1dkl")
+bbcode_enabled = true
+text = "ULISES"
+fit_content = true
+
+[node name="Stats" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="Stats" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -31.0
+offset_right = 105.0
+offset_bottom = 68.0
+grow_vertical = 2
+theme = SubResource("Theme_e1dkl")
+bbcode_enabled = true
+text = "CURRENT PLAYER:
+ASDASD
+
+BULLETS:"
+
+[node name="SFX_noSHOOT" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_s0qm1")
+volume_db = 8.0
+
+[node name="WinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_877tu")
+
+[node name="RevolverReload" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_eihqx")
+
+[node name="SFX_SHOOT" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_q6lo1")
+
+[node name="BotonesJugar" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 478.0
+offset_bottom = 270.0
+
+[node name="PLAY" type="Button" parent="BotonesJugar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -90.0
+offset_right = 40.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_ubcn1")
+text = "PLAY AGAIN"
+
+[node name="Botones" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ShootSomeone" type="Button" parent="Botones"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 384.0
+offset_top = 69.0
+offset_right = 427.0
+offset_bottom = 103.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_ubcn1")
+text = "YOU"
+
+[node name="ShootSomeone2" type="Button" parent="Botones"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 383.0
+offset_top = 108.0
+offset_right = 428.0
+offset_bottom = 142.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_ubcn1")
+text = "NEXT"
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vgcyr")
+}
+
+[node name="gunAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6hthy")
+}
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_x6oit")
+volume_db = -12.0
+autoplay = true
+
+[node name="SFXWHoos" type="AudioStreamPlayer" parent="."]
+
+[node name="X" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 482.0
+offset_bottom = 271.0
+mouse_filter = 2
+
+[node name="Menu" parent="." instance=ExtResource("3_gw5os")]
+layout_mode = 1
+
+[node name="Close" type="Button" parent="Menu"]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 27.0
+offset_right = 453.0
+offset_bottom = 55.0
+theme = SubResource("Theme_e1dkl")
+text = "X"
+
+[node name="Transition" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_55vxu")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.5
+offset_top = -137.5
+offset_right = 242.5
+offset_bottom = 137.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = SubResource("GDScript_acney")
+
+[node name="CRT" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_c6vgq")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -137.0
+offset_right = 243.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="BotonesJugar/PLAY" to="." method="winAnim"]
+[connection signal="pressed" from="Botones/ShootSomeone" to="." method="shootYourself"]
+[connection signal="pressed" from="Botones/ShootSomeone2" to="." method="shoot"]
+[connection signal="pressed" from="Menu/Close" to="." method="closeButton"]

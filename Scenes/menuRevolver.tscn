@@ -1,0 +1,241 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxqg76vent1sy"]
+
+[ext_resource type="FontFile" uid="uid://2ooisgvhy6gi" path="res://FONTS/fibberish.ttf" id="1_8psa6"]
+[ext_resource type="Texture2D" uid="uid://cwl71ipeqty8y" path="res://Sprites/RUleta/Fondo.png" id="1_mmxar"]
+[ext_resource type="Script" path="res://Scripts/menuRevolver.gd" id="1_texpo"]
+
+[sub_resource type="Theme" id="Theme_qje2d"]
+default_font = ExtResource("1_8psa6")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.12549)
+RichTextLabel/constants/outline_size = 4
+RichTextLabel/constants/shadow_offset_x = 3
+RichTextLabel/constants/shadow_offset_y = 3
+RichTextLabel/font_sizes/bold_font_size = 27
+
+[sub_resource type="Theme" id="Theme_xsdpi"]
+default_font = ExtResource("1_8psa6")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.12549)
+RichTextLabel/constants/outline_size = 4
+RichTextLabel/constants/shadow_offset_x = 3
+RichTextLabel/constants/shadow_offset_y = 3
+RichTextLabel/font_sizes/bold_font_size = 27
+
+[sub_resource type="Theme" id="Theme_7ub1p"]
+default_font = ExtResource("1_8psa6")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.12549)
+RichTextLabel/constants/outline_size = 4
+RichTextLabel/constants/shadow_offset_x = 3
+RichTextLabel/constants/shadow_offset_y = 3
+RichTextLabel/font_sizes/bold_font_size = 27
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccs38"]
+bg_color = Color(0.137255, 0.137255, 0.137255, 0.815686)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vramk"]
+bg_color = Color(0, 0, 0, 0.611765)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7f1c"]
+bg_color = Color(0, 0, 0, 0.901961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="Theme" id="Theme_q1qsv"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/fonts/font = ExtResource("1_8psa6")
+Button/styles/hover = SubResource("StyleBoxFlat_ccs38")
+Button/styles/normal = SubResource("StyleBoxFlat_vramk")
+Button/styles/pressed = SubResource("StyleBoxFlat_w7f1c")
+
+[node name="Menu" type="Control" node_paths=PackedStringArray("LineEdit1", "LineEdit2", "LineEdit3", "LineEdit4", "LineEdit5", "LineEdit6")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -135.0
+offset_right = 240.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_texpo")
+LineEdit1 = NodePath("LineEdit")
+LineEdit2 = NodePath("LineEdit2")
+LineEdit3 = NodePath("LineEdit3")
+LineEdit4 = NodePath("LineEdit4")
+LineEdit5 = NodePath("LineEdit5")
+LineEdit6 = NodePath("LineEdit6")
+
+[node name="FOndo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = -145.0
+offset_right = 255.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mmxar")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -93.5
+offset_top = 40.0
+offset_right = 93.5
+offset_bottom = 56.0
+grow_horizontal = 2
+theme = SubResource("Theme_qje2d")
+bbcode_enabled = true
+text = "WRITE THE PLAYERS NAMES:"
+fit_content = true
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -53.5
+offset_right = -55.9375
+offset_bottom = -22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_xsdpi")
+placeholder_text = "Player1"
+
+[node name="LineEdit2" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5313
+offset_top = -53.0
+offset_right = 33.5313
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7ub1p")
+placeholder_text = "Player2"
+
+[node name="LineEdit3" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 51.0
+offset_top = -53.0
+offset_right = 118.063
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7ub1p")
+placeholder_text = "Player3"
+
+[node name="LineEdit4" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -9.0
+offset_right = -55.9374
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7ub1p")
+placeholder_text = "Player4"
+
+[node name="LineEdit5" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -9.0
+offset_right = 34.0625
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7ub1p")
+placeholder_text = "Player5"
+
+[node name="LineEdit6" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 51.0
+offset_top = -9.0
+offset_right = 118.063
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7ub1p")
+placeholder_text = "Player6"
+
+[node name="Apply" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = 42.0
+offset_right = 20.5
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_q1qsv")
+text = "APPLY"
+
+[connection signal="pressed" from="Apply" to="." method="applyNames"]
